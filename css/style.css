@@ -2,8 +2,52 @@ body {
 	margin: 0;
 	padding: 0;
 	font-size: 16px;
+	font-family: serif;
+	background: no-repeat center url('../image/carrelage.jpg');
+	background-size: cover;
+	color: white;
 }
-
-.container-fluid {
+img {
+	height: 60px;
+	width: 60px;
+	border-radius: 50px;
+}
+.shadowTxt {
+	text-shadow: 5px 15px 15px black; 
+}
+.shadowBox {
+	box-shadow: 1px 15px 15px black;
+}
+.hoverBox:hover{
+	box-shadow: 1px 1px 15px black;
+}
+.marge-top {	
+	margin-top: 2em;
+}
+.marge-top-xs {	
+	margin-top: 4px;
+}
+.marge-bot {
+	margin-bottom: 2em;
+}
+.marge-bot-xs {
+	margin-bottom: 1.1em;
+}
+.radius {
+	border-radius: 15px;
 	height: 100px;
+	padding: 0.5% 1% 1% 1%;
+	border: 1px solid black;
+	background:  linear-gradient(10deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url("../image/bureau.jpg") 20% no-repeat;
+	font-weight: bold;
+	font-family: serif;
+}
+.meteoBox {
+	box-shadow: 1px 1px 15px black;
+	border-radius: 15px;
+	font-weight: bold;
+	font-family: serif;
+	text-shadow: 5px 15px 15px black; 
+
+	background:  linear-gradient(400deg, rgba(10,157,255,1), rgba(10,157,255,1));
 }

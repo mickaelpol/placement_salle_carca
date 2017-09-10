@@ -1,16 +1,57 @@
 $(document).ready(function(){
 
 
-	$.ajax({
-		url: "https://spreadsheets.google.com/feeds/list/2PACX-1vRPVDAiIAHzlFZr-RK7fvernciK512b3kHNhTb_Fyc_vT29pQnzNl2i4BAKkasVf4iTQqnkHD1_GW5G/od6/public/values?alt=json",
-		data: {nom:"juin"},
+	$.ajax({ // requete ajax de l'api google 
+		dataType: 'json',
+		url: "http://spreadsheets.google.com/feeds/list//od6/public/values?alt=json",
 
 		success:function(data){
-			$('#contenu').html(data.nom);
+
+			$('#melange').click(function(){ // clic du mélange
+
+				shuffle(data.feed.entry);
+				console.log(data.feed.entry);
+				for(var i = 0; i < 15; i++){ // boucle 
+
+					//insertion des données dans les id correspondant
+					$('#place' + i).html(data.feed.entry[i].title.$t + "<br>" + '<img src="' + data.feed.entry[i].gsx$url.$t + '"/>' );
+
+				}
+
+			});
+		},
+
+		error:function(){ // renvoi d'erreur
+			$('#contenu').html("erreur");
 		}
 
 	});
 
+	function shuffle(array) {// fonction de mélange aleatoire 
+		var j, x, i;
+		for (i = array.length; i; i--) {
+			j = Math.floor(Math.random() * i);
+			x = array[i - 1];
+			array[i - 1] = array[j];
+			array[j] = x;
+		}
+	}
 
-});
+$.ajax({ // requete ajax pour la météo
+	url:"http://api.openweathermap.org/data/2.5/forecast?lang=fr&units=metric&q=Carcassonne&&APPID=",
+
+	success:function(data){//ajoute les infos dans les id correspondant 
+		console.log(data);
+	$('#meteo').html(data.city.name + "<br>"); // Ville de Carcassonne
+	$('#jour').html(moment(data.list[0].dt_txt).format("ll, LT")); // jour + heure
+	$('#temp').html(Math.floor(data.list[0].main.temp) + " °C" + "<img src='http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png'>"); //température + icone
+	$('#param').html("humidité " +data.list[0].main.humidity + " %" + "<br>" + "Vent " + Math.floor(data.list[0].wind.speed * 3.6)+ " Km/h" + "<br>");// humidité et vent
+	},
+	erreur:function(){ // renvoi de l'erreur si le chargement ne se fait pas
+		$('#meteo').html("erreur de chargement");
+	}
+})
+
+
+}); // fin du document ready function 
 
