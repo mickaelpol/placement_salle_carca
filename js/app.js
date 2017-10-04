@@ -3,7 +3,7 @@ $(document).ready(function(){
 
 	$.ajax({ // requete ajax de l'api google 
 		dataType: 'json',
-		url: "http://spreadsheets.google.com/feeds/list//od6/public/values?alt=json",
+		url: "http://spreadsheets.google.com/feeds/list/1-oYlvGP573O4ml4AzgapLhK_KoEqlfDIzvSnWz48_nQ/od6/public/values?alt=json",
 
 		success:function(data){
 
@@ -38,7 +38,7 @@ $(document).ready(function(){
 	}
 
 $.ajax({ // requete ajax pour la météo
-	url:"http://api.openweathermap.org/data/2.5/forecast?lang=fr&units=metric&q=Carcassonne&&APPID=",
+	url:"http://api.openweathermap.org/data/2.5/forecast?lang=fr&units=metric&q=Carcassonne&&APPID=a46b3c46d72e846fc8c834a487a2b41d",
 
 	success:function(data){//ajoute les infos dans les id correspondant 
 		console.log(data);
